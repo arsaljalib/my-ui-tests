@@ -948,3 +948,90 @@ java.lang.NullPointerException
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:653)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:590)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1499)
+!SESSION 2017-11-08 11:15:50.210 -----------------------------------------------
+eclipse.buildId=4.7.1.M20171009-0410
+java.version=9.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/arsaljalib/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/arsaljalib/.eclipse_keyring
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2017-11-08 11:17:39.431
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.eclipse.e4.core.di.InjectionException: java.lang.IllegalStateException: Expected the service org.eclipse.epp.logging.aeri.ide.server ServerConnection [FAILED] to be TERMINATED, but the service has FAILED
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:65)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:990)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.disposed(InjectorImpl.java:450)
+	at org.eclipse.e4.core.internal.di.Requestor.disposed(Requestor.java:156)
+	at org.eclipse.e4.core.internal.contexts.ContextObjectSupplier$ContextInjectionListener.update(ContextObjectSupplier.java:78)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:111)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.handleInvalid(TrackableComputationExt.java:74)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:178)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:163)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:163)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.dispose(EclipseContext.java:163)
+	at org.eclipse.e4.core.internal.contexts.osgi.EclipseContextOSGi.dispose(EclipseContextOSGi.java:99)
+	at org.eclipse.e4.core.internal.contexts.osgi.EclipseContextOSGi.bundleChanged(EclipseContextOSGi.java:141)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.dispatchEvent(BundleContextImpl.java:908)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:148)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEventPrivileged(EquinoxEventPublisher.java:213)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEvent(EquinoxEventPublisher.java:120)
+	at org.eclipse.osgi.internal.framework.EquinoxEventPublisher.publishBundleEvent(EquinoxEventPublisher.java:112)
+	at org.eclipse.osgi.internal.framework.EquinoxContainerAdaptor.publishModuleEvent(EquinoxContainerAdaptor.java:168)
+	at org.eclipse.osgi.container.Module.publishEvent(Module.java:476)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:634)
+	at org.eclipse.osgi.container.Module.stop(Module.java:498)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:202)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:165)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+Caused by: java.lang.IllegalStateException: Expected the service org.eclipse.epp.logging.aeri.ide.server ServerConnection [FAILED] to be TERMINATED, but the service has FAILED
+	at com.google.common.util.concurrent.AbstractService.checkCurrentState(AbstractService.java:330)
+	at com.google.common.util.concurrent.AbstractService.awaitTerminated(AbstractService.java:303)
+	at com.google.common.util.concurrent.AbstractIdleService.awaitTerminated(AbstractIdleService.java:199)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.diStop(ServerConnection.java:392)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:55)
+	... 25 more
+Caused by: org.apache.lucene.store.AlreadyClosedException: Underlying file changed by an external force at 2017-10-18T20:06:06Z, (lock=NativeFSLock(path=/Users/arsaljalib/eclipse-workspace/my-ui-tests/.metadata/.plugins/org.eclipse.epp.logging.aeri.ide/org.eclipse.epp.logging.aeri.ide.server/http-cache.lucene60/write.lock,impl=sun.nio.ch.FileLockImpl[0:9223372036854775807 exclusive valid],creationTime=2017-11-08T19:16:20Z))
+	at org.apache.lucene.store.NativeFSLockFactory$NativeFSLock.ensureValid(NativeFSLockFactory.java:179)
+	at org.apache.lucene.store.LockValidatingDirectoryWrapper.createOutput(LockValidatingDirectoryWrapper.java:43)
+	at org.apache.lucene.index.SegmentInfos.write(SegmentInfos.java:464)
+	at org.apache.lucene.index.SegmentInfos.prepareCommit(SegmentInfos.java:768)
+	at org.apache.lucene.index.IndexWriter.startCommit(IndexWriter.java:4443)
+	at org.apache.lucene.index.IndexWriter.prepareCommitInternal(IndexWriter.java:2876)
+	at org.apache.lucene.index.IndexWriter.commitInternal(IndexWriter.java:2989)
+	at org.apache.lucene.index.IndexWriter.shutdown(IndexWriter.java:1086)
+	at org.apache.lucene.index.IndexWriter.close(IndexWriter.java:1129)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.rest.LuceneHttpCacheStorage.close(LuceneHttpCacheStorage.java:128)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.rest.RestBasedProblemsHistory.close(RestBasedProblemsHistory.java:129)
+	at org.eclipse.epp.internal.logging.aeri.ide.server.mars.ServerConnection.shutDown(ServerConnection.java:398)
+	at com.google.common.util.concurrent.AbstractIdleService$DelegateService$2.run(AbstractIdleService.java:79)
+	at com.google.common.util.concurrent.Callables$4.run(Callables.java:122)
+	... 1 more
+!SESSION 2017-11-08 11:29:47.626 -----------------------------------------------
+eclipse.buildId=4.7.1.M20171009-0410
+java.version=9.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/arsaljalib/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/arsaljalib/.eclipse_keyring
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-11-08 11:31:29.537
+!MESSAGE Exception caught during execution of command '[git, --version]' in '/usr/bin', return code '1', error message 'xcode-select: note: no developer tools were found at '/Applications/Xcode.app', requesting install. Choose an option in the dialog to download the command line developer tools.
+'
+!SESSION 2017-11-08 11:37:21.057 -----------------------------------------------
+eclipse.buildId=4.7.1.M20171009-0410
+java.version=9.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/arsaljalib/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/arsaljalib/.eclipse_keyring
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2017-11-08 11:37:36.564
+!MESSAGE Exception caught during execution of command '[git, config, --system, --edit]' in '/usr/bin', return code '128', error message 'fatal: Could not switch to '/Library/Developer/CommandLineTools/usr/etc/': No such file or directory
+'

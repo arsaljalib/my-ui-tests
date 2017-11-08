@@ -17,4 +17,7 @@
     <fullyQualifiedTypeName name="java.util.Calendar"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.By.ByPartialLinkText"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.support.ui.WebDriverWait"/>
+    <fullyQualifiedTypeName name="jdk.jfr.Timespan"/>
+    <fullyQualifiedTypeName name="java.util.concurrent.TimeUnit"/>
 </qualifiedTypeNameHistroy>

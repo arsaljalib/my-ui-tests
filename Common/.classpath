@@ -6,32 +6,32 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/MyVanidayTestApplication/Libraries/java-json.jar">
+	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/my-ui-tests/Libraries/java-json.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/MyVanidayTestApplication/Libraries/javax.mail.jar">
+	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/my-ui-tests/Libraries/javax.mail.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/MyVanidayTestApplication/Libraries/selenium-server-standalone-3.4.0.jar">
+	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/my-ui-tests/Libraries/selenium-server-standalone-3.4.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/MyVanidayTestApplication/Libraries/additionnal.jar">
+	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/my-ui-tests/Libraries/additionnal.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/MyVanidayTestApplication/Libraries/jsoup-1.10.3.jar">
+	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/my-ui-tests/Libraries/jsoup-1.10.3.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/MyVanidayTestApplication/Libraries/activation.jar">
+	<classpathentry kind="lib" path="/Users/arsaljalib/eclipse-workspace/my-ui-tests/Libraries/activation.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
