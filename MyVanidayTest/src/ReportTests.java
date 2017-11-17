@@ -1299,7 +1299,7 @@ public class ReportTests extends myCommon{
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			System.out.println("The program threw an Exception in Verify Appointment Summary due to: "+e.getMessage());
 		}
 	}
 	public int FindSalesByAppointment(String ID, String type, String StaffName)
@@ -1328,7 +1328,7 @@ public class ReportTests extends myCommon{
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			System.out.println("The program threw an Exception in Find Sales By Appointment due to: "+e.getMessage());
 		}
 		return 0;
 	}
@@ -1426,7 +1426,7 @@ public class ReportTests extends myCommon{
 		catch(Exception e)
 		{
 			System.out.println("The test threw an exception in Verify Retention Summary due to "+e.getMessage());
-			e.printStackTrace();
+		 
 		}
 	}
 	public void VerifySalesSummary()

@@ -264,7 +264,7 @@ public class myCommon {
 			method.invoke(this, null);
 		} catch (Exception e) {
 			
-			e.printStackTrace();
+			System.out.println("The program threw an Exception in the EXECUTE SPECIFIC TEST method due to: "+e.getMessage());
 		}
 	}
 
@@ -298,7 +298,7 @@ public class myCommon {
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("The program threw an Exception in the Execute Similar Tests due to: "+e.getMessage());
 		}
 	}
 
@@ -314,7 +314,7 @@ public class myCommon {
 			return AttributeArray;
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("The program threw an Exception in the Extract Int Array due to: "+e.getMessage());
 		}
 		return null;
 
@@ -350,7 +350,7 @@ public class myCommon {
 			return AttributeArray;
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("The program threw an Exception in the String Array due to: "+e.getMessage());
 		}
 		return null;
 	}
@@ -439,7 +439,7 @@ public class myCommon {
 			return JData;
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("The program threw an Exception in the Extract Documents From Query due to: "+e.getMessage());
 		}
 		return null;
 	}
@@ -462,7 +462,7 @@ public class myCommon {
 			return jobj;
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("The program threw an Exception in the Extract Document From QUERY due to: "+e.getMessage());
 		}
 		return null;
 	}
@@ -534,7 +534,7 @@ public class myCommon {
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("The program threw an Exception in the Reset Inventory due to: "+e.getMessage());
 		}
 	}
 
@@ -574,8 +574,8 @@ public class myCommon {
 			Sleep(10);
 		}
 		catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			System.out.println("The program threw an Exception in the Reset Clients due to: "+e.getMessage());
+
 		}
 		
 	}
@@ -613,8 +613,8 @@ public class myCommon {
 			}
 		}
 		catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			System.out.println("The program threw an Exception in the Reset Saloon due to: "+e.getMessage());
+
 		}
 		
 	}
@@ -685,7 +685,8 @@ public class myCommon {
 			return Orders;
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("The program threw an Exception in the SearchEvent By Note due to: "+e.getMessage());
+
 		}
 		
 		return null;
@@ -783,9 +784,8 @@ public class myCommon {
 			
 			 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//if(e.getMessage().contains("response code: 500")!=true)
-			//	e.printStackTrace();
+			System.out.println("The program threw an Exception in the Reset Appointments due to: "+e.getMessage());
+
 		}
 	}
 	
@@ -925,7 +925,7 @@ try {
 }
 catch(Exception e)
 {
-	e.printStackTrace();
+	System.out.println("The program threw an Exception in the Execute Block Time Query due to: "+e.getMessage());
 }
 
 	}
@@ -950,7 +950,7 @@ catch(Exception e)
 	}
 	catch(Exception e)
 	{
-		e.printStackTrace();
+		System.out.println("The program threw an Exception in the FIND CLIENT due to: "+e.getMessage());
 	}
 	return null;
 }
@@ -976,7 +976,8 @@ catch(Exception e)
 	}
 	catch(Exception e)
 	{
-		
+		System.out.println("The program threw an Exception in Verify Clients due to: "+e.getMessage());
+
 	}
 	return null;
 }
@@ -1119,7 +1120,7 @@ public boolean VerifyNotificationEmail(String  Date, String Time,String EmailTyp
 
    
     } catch (Exception e) {
-       e.printStackTrace();
+		System.out.println("The program threw an Exception in Verify Email Notification due to: "+e.getMessage());
     }
 	
 	

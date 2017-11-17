@@ -71,7 +71,7 @@ public class Execution {
 	 	
 		} catch (Exception e) {
 			 
-			e.printStackTrace();
+			System.out.println("The program threw an Exception in the Main Method due to: "+e.getMessage());
 		}
 
 	}
