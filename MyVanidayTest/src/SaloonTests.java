@@ -19,9 +19,9 @@ public class SaloonTests extends myCommon {
 		ResetSaloon(AuthToken);
 		driver.manage().window().maximize();
 
-		// ExecuteAllTests(driver, SaloonTests.class);
+		  ExecuteAllTests(driver, SaloonTests.class);
 
-		ExecuteSpecificTest("Saloon_Service_TestCase_6", SaloonTests.class);
+		//ExecuteSpecificTest("Saloon_Service_TestCase_6", SaloonTests.class);
 		// ExecuteSimilarTests("Inventory_Product_TestCase_15",SaloonTests.class,driver);
 		PrintTestResults();
 		ResetSaloon(AuthToken);
@@ -33,10 +33,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -71,10 +71,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -108,10 +108,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -145,10 +145,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -181,10 +181,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -217,10 +217,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -258,10 +258,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -309,10 +309,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -341,10 +341,10 @@ public class SaloonTests extends myCommon {
 				throw new Exception("The Professional was not created where it should have");
 			Sleep(10);
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 
 			Sleep(3);
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(3);
 
 			List<WebElement> elements = driver.findElements(By.cssSelector(
@@ -380,10 +380,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -413,10 +413,10 @@ public class SaloonTests extends myCommon {
 
 			Sleep(5);
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -457,10 +457,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -495,7 +495,7 @@ public class SaloonTests extends myCommon {
 			if (Doc.getString("gender").contains("female") != true)
 				throw new Exception("The gender was not set");
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/update/" + Doc.getString("id"));
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/update/" + Doc.getString("id"));
 			Sleep(3);
 
 			driver.findElement(By.name("lastName")).sendKeys("2");
@@ -537,10 +537,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -608,10 +608,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -679,10 +679,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -711,10 +711,10 @@ public class SaloonTests extends myCommon {
 				throw new Exception("The Professional was not created where it should have");
 			Sleep(10);
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 
 			Sleep(3);
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(3);
 
 			List<WebElement> elements = driver.findElements(By.cssSelector(
@@ -750,10 +750,10 @@ public class SaloonTests extends myCommon {
 			String StaffName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(5);
 			driver.findElement(By.cssSelector(
-					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > vm-add-staff > a"))
+					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(1) > h3 > vm-add-staff > button"))
 					.click();
 			Sleep(3);
 
@@ -782,10 +782,10 @@ public class SaloonTests extends myCommon {
 				throw new Exception("The Professional was not created where it should have");
 			Sleep(10);
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 
 			Sleep(3);
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(3);
 
 			List<WebElement> elements = driver.findElements(By.cssSelector(
@@ -810,10 +810,10 @@ public class SaloonTests extends myCommon {
 
 			Sleep(10);
 
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 
 			Sleep(3);
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/staff/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/staff/list");
 			Sleep(3);
 
 			elements = driver.findElements(By.cssSelector(
@@ -847,7 +847,7 @@ public class SaloonTests extends myCommon {
 			String ServiceName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 			
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/services/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/services/list");
 			Sleep(5);
 			
 			List<WebElement> elements= driver.findElements(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div > div > span"));
@@ -869,7 +869,7 @@ builder.clickAndHold(elements.get(0)).moveToElement(elements.get(2)).click().bui
 			String ServiceName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 			
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/services/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/services/list");
 			Sleep(5);
 			
 		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.service-name-cel.ng-binding"));
@@ -901,7 +901,7 @@ builder.clickAndHold(elements.get(0)).moveToElement(elements.get(2)).click().bui
 			String ServiceName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 			
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/services/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/services/list");
 			Sleep(5);
 			
 		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.service-name-cel.ng-binding"));
@@ -940,7 +940,7 @@ Sleep(5);
 			String ServiceName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 			
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/services/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/services/list");
 			Sleep(5);
 			
 		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.service-name-cel.ng-binding"));
@@ -997,7 +997,7 @@ Sleep(5);
 			String ServiceName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 			
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/settings/services/list");
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/services/list");
 			Sleep(5);
 			
 		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.service-name-cel.ng-binding"));

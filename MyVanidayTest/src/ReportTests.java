@@ -31,10 +31,10 @@ public class ReportTests extends myCommon{
 		 ResetClients(AuthToken);
 			driver.manage().window().maximize();
 
-	 // ExecuteAllTests(driver, ClientTests.class);
+	 // ExecuteAllTests(driver, ReportTests.class);
 
-		 //ExecuteSpecificTest("Clients_TestCase_7",ClientTests.class);
-		 ExecuteSimilarTests("Reports_AppointmentsSummary_TestCase_2",ReportTests.class,driver);
+		 //ExecuteSpecificTest("Clients_TestCase_7",ReportTests.class);
+		  ExecuteSimilarTests("Reports_CustomerRetention_TestCase_4",ReportTests.class,driver);
 	  PrintTestResults();
 	}
 	public void Reports_AppointmentsSummary_TestCase_1() // ALL STAFF, Today
@@ -121,7 +121,7 @@ public class ReportTests extends myCommon{
 			
 			new Select(driver.findElement(By.id("reportTypeFilter"))).selectByVisibleText("Appointments Summary");
 
-			new Select(driver.findElement(By.id("reportPeriodFilter"))).selectByVisibleText("Last 7 Days");
+			new Select(driver.findElement(By.id("reportPeriodFilter"))).selectByVisibleText("Last 7 days");
 
 			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(4) > vm-button-loading > button > span")).click();
 			Sleep(5);
@@ -162,7 +162,7 @@ public class ReportTests extends myCommon{
 			
 			new Select(driver.findElement(By.id("reportTypeFilter"))).selectByVisibleText("Appointments Summary");
 
-			new Select(driver.findElement(By.id("reportPeriodFilter"))).selectByVisibleText("Last 30 Days");
+			new Select(driver.findElement(By.id("reportPeriodFilter"))).selectByVisibleText("Last 30 days");
 
 			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(4) > vm-button-loading > button > span")).click();
 			Sleep(5);
@@ -950,11 +950,11 @@ public class ReportTests extends myCommon{
 
 			new Select(driver.findElement(By.id("reportPeriodFilter"))).selectByVisibleText("Today");
 
-			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(4) > vm-button-loading > button > span")).click();
+			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(3) > vm-button-loading > button > span")).click();
 			Sleep(5);
 			
 			
-			List<WebElement> listItems = driver.findElements(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-result-section.ng-scope > vm-appointments-summary-report > div:nth-child(1) > table > tbody > tr"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("div.ui-grid-viewport.ng-isolate-scope > div > div"));
 
 		 
 			
@@ -983,11 +983,11 @@ public class ReportTests extends myCommon{
 
 			new Select(driver.findElement(By.id("reportPeriodFilter"))).selectByVisibleText("Yesterday");
 
-			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(4) > vm-button-loading > button > span")).click();
+			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(3) > vm-button-loading > button > span")).click();
 			Sleep(5);
 			
 			
-			List<WebElement> listItems = driver.findElements(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-result-section.ng-scope > vm-appointments-summary-report > div:nth-child(1) > table > tbody > tr"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("div.ui-grid-viewport.ng-isolate-scope > div > div"));
 
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(new Date());
@@ -1021,16 +1021,19 @@ public class ReportTests extends myCommon{
 
 			new Select(driver.findElement(By.id("reportPeriodFilter"))).selectByVisibleText("Last 7 days");
 
-			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(4) > vm-button-loading > button > span")).click();
+			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(3) > vm-button-loading > button > span")).click();
 			Sleep(5);
 			
 			
-			List<WebElement> listItems = driver.findElements(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-result-section.ng-scope > vm-appointments-summary-report > div:nth-child(1) > table > tbody > tr"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("div.ui-grid-viewport.ng-isolate-scope > div > div"));
 
 		 
-			
-			
-			VerifyRetentionSummary(listItems,CurrentDate,CurrentDate);
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			cal.add(Calendar.DATE, -7);
+			String Starting = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+ 			
+			VerifyRetentionSummary(listItems,Starting,CurrentDate);
 			 
 			TestPassed();
 
@@ -1054,11 +1057,11 @@ public class ReportTests extends myCommon{
 
 			new Select(driver.findElement(By.id("reportPeriodFilter"))).selectByVisibleText("This month");
 
-			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(4) > vm-button-loading > button > span")).click();
+			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(3) > vm-button-loading > button > span")).click();
 			Sleep(5);
 			
 			
-			List<WebElement> listItems = driver.findElements(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-result-section.ng-scope > vm-appointments-summary-report > div:nth-child(1) > table > tbody > tr"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("div.ui-grid-viewport.ng-isolate-scope > div > div"));
 
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(new Date());
@@ -1095,11 +1098,11 @@ public class ReportTests extends myCommon{
 
 			new Select(driver.findElement(By.id("reportPeriodFilter"))).selectByVisibleText("Last 30 days");
 
-			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(4) > vm-button-loading > button > span")).click();
+			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(3) > vm-button-loading > button > span")).click();
 			Sleep(5);
 			
 			
-			List<WebElement> listItems = driver.findElements(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-result-section.ng-scope > vm-appointments-summary-report > div:nth-child(1) > table > tbody > tr"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("div.ui-grid-viewport.ng-isolate-scope > div > div"));
 
 		 
 			Calendar cal = Calendar.getInstance();
@@ -1148,11 +1151,11 @@ public class ReportTests extends myCommon{
 			driver.findElement(By.id("startPeriod")).sendKeys(new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime()));
 			driver.findElement(By.id("endPeriod")).sendKeys(new SimpleDateFormat("dd/MM/yyyy").format(cal.getTime()));
 
-			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(4) > vm-button-loading > button > span")).click();
+			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(3) > vm-button-loading > button > span")).click();
 			Sleep(5);
 			
 			
-			List<WebElement> listItems = driver.findElements(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-result-section.ng-scope > vm-appointments-summary-report > div:nth-child(1) > table > tbody > tr"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("div.ui-grid-viewport.ng-isolate-scope > div > div"));
 
 		 
 			String Starting = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
@@ -1185,11 +1188,11 @@ public class ReportTests extends myCommon{
 
 			new Select(driver.findElement(By.id("reportPeriodFilter"))).selectByVisibleText("All dates");
 
-			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(4) > vm-button-loading > button > span")).click();
+			driver.findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-filters > form > div > div > div > div:nth-child(3) > vm-button-loading > button > span")).click();
 			Sleep(5);
 			
 			
-			List<WebElement> listItems = driver.findElements(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-result-section.ng-scope > vm-appointments-summary-report > div:nth-child(1) > table > tbody > tr"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("div.ui-grid-viewport.ng-isolate-scope > div > div"));
 
 		 
 			
@@ -1211,9 +1214,9 @@ public class ReportTests extends myCommon{
 		{
 			String StaffName= listItems.get(i).findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-result-section.ng-scope > vm-appointments-summary-report > div:nth-child(1) > table > tbody > tr:nth-child("+(i+1)+") > td:nth-child(1)")).getText();
 			String TotalAppointments= listItems.get(i).findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-result-section.ng-scope > vm-appointments-summary-report > div:nth-child(1) > table > tbody > tr:nth-child("+(i+1)+") > td:nth-child(2)")).getText();
-			String TotalSales= listItems.get(i).findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-result-section.ng-scope > vm-appointments-summary-report > div:nth-child(1) > table > tbody > tr:nth-child("+(i+1)+") > td:nth-child(3)")).getText().replace(".","").replace("$","");
+			String TotalSales= listItems.get(i).findElement(By.cssSelector("body > ui-view > ui-view > div > div > div > div > div > div > div.tab-content > div.reports-result-section.ng-scope > vm-appointments-summary-report > div:nth-child(1) > table > tbody > tr:nth-child("+(i+1)+") > td:nth-child(3)")).getText().replace(".","").replace("$","").replace(",","");
 
-			String Query ="http://my-api.dev.vaniday.net.br/calendar/salons/24ccfb06-5a18-4c8a-af93-3962e7005fe1/?from="+Start +"&to="+End;
+			String Query ="https://my-api-staging.vaniday.com/calendar/salons/83da9e51-4bb4-4f7d-a8b7-e5472ac02b22/?from="+Start +"&to="+End;
 			 
 				 
 				String result = ExecuteQuery(Query);
@@ -1247,7 +1250,7 @@ public class ReportTests extends myCommon{
 					}
 					if(JData.getJSONObject(j).getString("type").contains("booking") || JData.getJSONObject(j).getString("type").contains("widget"))
 					{						
-						if(StaffName.contains(FindProfessionalByID(JData.getJSONObject(j).getString("professionalId")).getString("firstName"))==true)
+						if( JData.getJSONObject(j).getJSONObject("booking").getString("professionalName").contains(StaffName)==true)
 							 {
 								if(JData.getJSONObject(j).getJSONObject("booking").getString("status").contains("done_by_professional"))
 								{
@@ -1304,7 +1307,7 @@ public class ReportTests extends myCommon{
 		try {
 			
 			int returnVal=0;
-		String Query ="http://my-api.dev.vaniday.net.br/salons/24ccfb06-5a18-4c8a-af93-3962e7005fe1/"+type+"/"+ID;
+		String Query ="https://my-api-staging.vaniday.com/salons/83da9e51-4bb4-4f7d-a8b7-e5472ac02b22/"+type+"/"+ID;
 		 
 		 
 		String result = ExecuteQuery(Query);
@@ -1330,6 +1333,103 @@ public class ReportTests extends myCommon{
 		return 0;
 	}
 	public void VerifyRetentionSummary(List<WebElement> listItems,String Start,String End)
+	{
+		try {
+ 
+		for(int i=0; i<listItems.size();i++)
+		{
+			String CustomerName= listItems.get(i).findElement(By.className("ui-grid-coluiGrid-0005")).getText();
+			String PhoneNumber= listItems.get(i).findElement(By.className("ui-grid-coluiGrid-0006")).getText();
+			String LastAppointment= listItems.get(i).findElement(By.className("ui-grid-coluiGrid-0007")).getText();
+			String TotalSales= listItems.get(i).findElement(By.className("ui-grid-coluiGrid-000B")).getText().replace(".","").replace("$","").replace(",","");
+
+			String Query ="https://my-api-staging.vaniday.com/calendar/salons/83da9e51-4bb4-4f7d-a8b7-e5472ac02b22/?from="+Start +"&to="+End;
+			 
+				 
+				String result = ExecuteQuery(Query);
+
+				// System.out.println(result);
+				JSONObject jobj = new JSONObject(result);
+				JSONArray JData;
+				JData = jobj.getJSONArray("events");
+				
+				JSONArray Orders = new JSONArray();
+				
+				int sales=0;
+				int numOfApps=0;
+				
+				List<String> apps = new ArrayList<String>();
+				List<String> books = new ArrayList<String>();
+				
+				for(int j=0; j< JData.length();j++)
+				{
+					if(JData.getJSONObject(j).getString("type").contains("appointment"))
+					{
+						System.out.println(JData.getJSONObject(j));
+						if(JData.getJSONObject(j).getJSONObject("appointment").getString("customerName").contains(CustomerName)==true && JData.getJSONObject(j).getJSONObject("appointment").getString("customerPhoneNumber").contains(PhoneNumber)==true)
+							{
+								
+								apps.add(JData.getJSONObject(j).getJSONObject("appointment").getString("myOrderId"));
+								numOfApps++;
+								
+							}
+					//	sales= sales// +  //FindSalesByAppointment();
+					}
+					if(JData.getJSONObject(j).getString("type").contains("booking") || JData.getJSONObject(j).getString("type").contains("widget"))
+					{						
+						if( JData.getJSONObject(j).getJSONObject("booking").getString("customerName").contains(CustomerName)==true && JData.getJSONObject(j).getJSONObject("booking").getString("customerPhoneNumber").contains(PhoneNumber)==true)
+							 {
+								if(JData.getJSONObject(j).getJSONObject("booking").getString("status").contains("done_by_professional"))
+								{
+									books.add(JData.getJSONObject(j).getJSONObject("booking").getString("orderId"));
+									numOfApps++;
+								}
+								if(JData.getJSONObject(j).getJSONObject("booking").getString("status").contains("no_show_by_professional") && JData.getJSONObject(j).getJSONObject("booking").getString("paymentType").contains("credit-card"))
+								{
+									books.add(JData.getJSONObject(j).getJSONObject("booking").getString("orderId"));
+									numOfApps++;
+								}
+							 }
+
+					}
+					 
+				}
+				
+				Set<String> hs = new HashSet<>();
+				hs.addAll(apps);
+				apps.clear();
+				apps.addAll(hs);
+				
+				Set<String> hs2 = new HashSet<>();
+				hs2.addAll(books);
+				books.clear();
+				books.addAll(hs2);
+				
+				for(String appointmentID : apps)
+				{
+					sales= sales +FindSalesByAppointment(appointmentID,"my-orders","");
+				}
+				for(String bookingID : books)
+				{
+					sales= sales +FindSalesByAppointment(bookingID,"orders","");
+				}
+				
+				if(sales!=Integer.parseInt( TotalSales))
+					throw new Exception("The Sales numbers do not match");
+					
+					
+				System.out.println(sales);	 
+  
+			
+		}
+		}
+		catch(Exception e)
+		{
+			System.out.println("The test threw an exception in Verify Retention Summary due to "+e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	public void VerifySalesSummary()
 	{
 		
 	}

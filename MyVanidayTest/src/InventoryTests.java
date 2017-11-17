@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 public class InventoryTests extends myCommon {
 
-	 
+	 // PRE-REQUIREMENTS: A category name Foot Products and a Brand with name Maybeline should exist.
 
 	InventoryTests(WebDriver mydriver,String myAuthToken)  {
 		
@@ -32,10 +32,10 @@ public class InventoryTests extends myCommon {
 
 		 ResetInventory(AuthToken);
 
-		  ExecuteAllTests(driver, InventoryTests.class);
+		   ExecuteAllTests(driver, InventoryTests.class);
 
-		// ExecuteSpecificTest("Inventory_Product_TestCase_2",InventoryTests.class);
-		// ExecuteSimilarTests("Inventory_Categor_TestCase_",InventoryTests.class,driver);
+		// ExecuteSpecificTest("Inventory_Product_TestCase_14",InventoryTests.class);
+		// ExecuteSimilarTests("Category",InventoryTests.class,driver);
 		  PrintTestResults();
 
 	}

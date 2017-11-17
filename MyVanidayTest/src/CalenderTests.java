@@ -16,6 +16,8 @@ import org.openqa.selenium.support.ui.Select;
 
 public class CalenderTests extends myCommon {
 
+	// PRE-REQUIREMENTS: There exists a customer named Julia Roberts
+	
 	String CurrentDate;
 
 	CalenderTests(WebDriver mydriver, String myAuthToken) {
@@ -30,14 +32,14 @@ public class CalenderTests extends myCommon {
 		AuthToken = myAuthToken;
 
 	 	ResetAppointments(new SimpleDateFormat("yyyy-MM-dd").format( cal.getTime()));
-	 	driver.get("http://my-dev.vaniday.com.au/");
+	 	driver.get("http://my-staging.vaniday.com.au/");
 		Sleep(5);
 		driver.manage().window().maximize();
 	 	
-		 // ExecuteAllTests(driver, CalenderTests.class);
+		   //ExecuteAllTests(driver, CalenderTests.class);
 
-		 ExecuteSpecificTest("Calender_BlockedTime_TestCase_1", CalenderTests.class);
-		// ExecuteSimilarTests("Inventory_Product_TestCase_32",CalenderTests.class,driver);
+		// ExecuteSpecificTest("Calender_BlockedTime_TestCase_1", CalenderTests.class);
+		  ExecuteSimilarTests("Calender_Appointment_TestCase_30",CalenderTests.class,driver);
 
 	}
 
@@ -60,20 +62,21 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(AppointmentID, CurrentDate);
@@ -110,16 +113,16 @@ public class CalenderTests extends myCommon {
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[6]/div/div/div[2]/div/form/ng-form/vm-manage-manual-appointment-booking-item/div/div[1]/div[1]/div/div[1]/div/div/ul/li/a"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(AppointmentID, CurrentDate);
@@ -153,17 +156,18 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
  
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(AppointmentID, CurrentDate);
@@ -197,29 +201,31 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(3);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements = driver.findElements(By.name("service"));
-			ServiceElements.get(1).sendKeys("Hair Coloring");
+			ServiceElements.get(1).sendKeys("Women's haircut");
 			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			
@@ -229,7 +235,7 @@ public class CalenderTests extends myCommon {
 				throw new Exception("The service was not set in the appointment");
 			if (Docs.getJSONObject(0).getJSONObject("appointment").getString("customerName").contains("Julia Roberts") != true)
 				throw new Exception("The service was not set in the appointment");
-			if (Docs.getJSONObject(1).getJSONObject("appointment").getString("serviceName").contains("Hair Coloring") != true)
+			if (Docs.getJSONObject(1).getJSONObject("appointment").getString("serviceName").contains("Women's haircut") != true)
 				throw new Exception("The service was not set in the appointment");
 			if (Docs.getJSONObject(1).getJSONObject("appointment").getString("customerName").contains("Julia Roberts") != true)
 				throw new Exception("The service was not set in the appointment");
@@ -260,12 +266,14 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(3);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
@@ -274,15 +282,15 @@ public class CalenderTests extends myCommon {
 			
 			//ADDING SECOND BOOKING AFTER THIS
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements = driver.findElements(By.name("service"));
-			ServiceElements.get(1).sendKeys("Hair Coloring");
+			ServiceElements.get(1).sendKeys("Women's haircut");
 			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			
 			
 			listItems = driver.findElements(By.name("time"));
@@ -292,7 +300,7 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			
@@ -304,7 +312,7 @@ public class CalenderTests extends myCommon {
 				throw new Exception("The service was not set in the appointment");
 			if (Docs.getJSONObject(0).getString("startAt").contains("20:00") != true)
 				throw new Exception("The Time was not set in the appointment");
-			if (Docs.getJSONObject(1).getJSONObject("appointment").getString("serviceName").contains("Hair Coloring") != true)
+			if (Docs.getJSONObject(1).getJSONObject("appointment").getString("serviceName").contains("Women's haircut") != true)
 				throw new Exception("The service was not set in the appointment");
 			if (Docs.getJSONObject(1).getJSONObject("appointment").getString("customerName").contains("Julia Roberts") != true)
 				throw new Exception("The service was not set in the appointment");
@@ -337,12 +345,12 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(3);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
@@ -351,15 +359,15 @@ public class CalenderTests extends myCommon {
 			
 			//ADDING SECOND BOOKING AFTER THIS
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements = driver.findElements(By.name("service"));
-			ServiceElements.get(1).sendKeys("Hair Coloring");
+			ServiceElements.get(1).sendKeys("Women's haircut");
 			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			
 			
 
@@ -373,7 +381,7 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			
@@ -387,7 +395,7 @@ public class CalenderTests extends myCommon {
 				throw new Exception("The Time was not set in the appointment");
 			if (FindProfessionalByID(Docs.getJSONObject(1).getString("professionalId")).getString("firstName").contains("Asia") != true)
 				throw new Exception("The Professional was not set in the appointment");
-			if (Docs.getJSONObject(0).getJSONObject("appointment").getString("serviceName").contains("Hair Coloring") != true)
+			if (Docs.getJSONObject(0).getJSONObject("appointment").getString("serviceName").contains("Women's haircut") != true)
 				throw new Exception("The service was not set in the appointment");
 			if (Docs.getJSONObject(0).getJSONObject("appointment").getString("customerName").contains("Julia Roberts") != true)
 				throw new Exception("The Customer was not set in the appointment");
@@ -422,12 +430,12 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(3);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a/strong"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(3);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
@@ -436,15 +444,15 @@ public class CalenderTests extends myCommon {
 			
 			//ADDING SECOND BOOKING AFTER THIS
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements = driver.findElements(By.name("service"));
-			ServiceElements.get(1).sendKeys("Hair Coloring");
+			ServiceElements.get(1).sendKeys("Women's haircut");
 			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			
 
 			listItems = driver.findElements(By.name("time"));
@@ -456,13 +464,13 @@ public class CalenderTests extends myCommon {
 			
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			
-			 driver.findElement(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form[2]/vm-booking-item/div/div/div[2]/div/div/a/span")).click();
+			 driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form:nth-child(3) > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.add-new-appointment-form__footer > div > div > a > i")).click();
 			 
 			
 			Sleep(3);
 			
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			
@@ -503,26 +511,26 @@ public class CalenderTests extends myCommon {
 					.click();
 			Sleep(2);
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > div > vm-manage-client-button > a")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > div > vm-manage-client-button > a > span")).click();
 			Sleep(2);
 			driver.findElement(By.name("firstName")).sendKeys("New Appointment");
 			driver.findElement(By.name("lastName")).sendKeys("New Customer");
 			
-			driver.findElement(By.cssSelector("body > div.modal.fade.manage-client-modal.ng-scope.in > div > div > form > div.modal-footer > vm-button-loading > button > span")).click();
+			driver.findElement(By.cssSelector("body > div.modal.fade.manage-client-modal.ng-scope.in > div > div > form > div.modal-footer > vm-button-loading > button")).click();
 
 			Sleep(5);
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(5);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[5]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a/strong"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button > span"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(AppointmentID, CurrentDate);
@@ -559,46 +567,44 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
-			driver.get("http://my-dev.vaniday.com.au/");
+			driver.get("https://my-staging.vaniday.com.au/");
 			Sleep(5);
-// REPOPENING THE NEWLY CREATED APPOINTMENT HERE
+			// REPOPENING THE NEWLY CREATED APPOINTMENT HERE
 			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(2) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable.duration-45.booking__manual--approved")).click();
 			
 			Sleep(3);
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-appointment-context > div > div.client-holder > div > div.client-modal-actions.pull-right > a")).click();
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > div > vm-manage-client-button > a")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div.manage-calendar-modal__dialog__content__body__column-left > form > vm-manage-manual-appointment-context > div > div.client-holder > div > div.client-modal-actions.pull-right.ng-scope > a")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div.manage-calendar-modal__dialog__content__body__column-left > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > div > vm-manage-client-button > a > span")).click();
 			Sleep(2);
 			driver.findElement(By.name("firstName")).sendKeys("Edit Appointment");
 			driver.findElement(By.name("lastName")).sendKeys("New Customer");
 			
 			driver.findElement(By.cssSelector("body > div.modal.fade.manage-client-modal.ng-scope.in > div > div > form > div.modal-footer > vm-button-loading > button > span")).click();
 			Sleep(4);
-			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
-					.click();
+		//	driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div.manage-calendar-modal__dialog__content__body__column-left > div > button > span")).click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(AppointmentID, CurrentDate);
 
 			if (Docs.getJSONObject(0).getJSONObject("appointment").getString("serviceName").contains("Manicure") != true)
 				throw new Exception("The service was not set in the appointment");
 			if (Docs.getJSONObject(0).getJSONObject("appointment").getString("customerName").contains("Edit Appointment New Customer") != true)
-				throw new Exception("The service was not set in the appointment");
+				throw new Exception("The Customer was not set in the appointment");
 			
 
 			TestPassed();
@@ -627,29 +633,30 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
-			driver.get("http://my-dev.vaniday.com.au/");
+			driver.get("https://my-staging.vaniday.com.au/");
 			Sleep(5);
 			// REPOPENING THE NEWLY CREATED APPOINTMENT HERE
 			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(2) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable.duration-45.booking__manual--approved")).click();
 			
 			Sleep(3);
-			 driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a > span")).click();
+			 driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div.manage-calendar-modal__dialog__content__body__column-left > div > a > span")).click();
 			 Sleep(3);
 			 driver.findElement(By.cssSelector("body > div.bootbox.modal.fade.bootbox-confirm.in > div > div > div.modal-footer > button.btn.btn-primary")).click();
 			Sleep(5);
@@ -685,12 +692,14 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(3);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
@@ -699,15 +708,15 @@ public class CalenderTests extends myCommon {
 			
 			//ADDING SECOND BOOKING AFTER THIS
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements = driver.findElements(By.name("service"));
-			ServiceElements.get(1).sendKeys("Hair Coloring");
+			ServiceElements.get(1).sendKeys("Women's haircut");
 			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			
 			
 			listItems = driver.findElements(By.name("time"));
@@ -717,16 +726,16 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
-			driver.get("http://my-dev.vaniday.com.au/");
+			driver.get("https://my-staging.vaniday.com.au/");
 			Sleep(5);
 			// REPOPENING THE NEWLY CREATED APPOINTMENT HERE
 			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(2) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable.duration-45.booking__manual--approved")).click();
 			
 			Sleep(3);
-			 driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a > span")).click();
+			 driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div.manage-calendar-modal__dialog__content__body__column-left > div > a > span")).click();
 			 Sleep(3);
 			 driver.findElement(By.cssSelector("body > div.bootbox.modal.fade.bootbox-confirm.in > div > div > div.modal-footer > button.btn.btn-primary")).click();
 			Sleep(5);
@@ -761,40 +770,43 @@ public class CalenderTests extends myCommon {
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
-			driver.get("http://my-dev.vaniday.com.au/");
+			driver.get("https://my-staging.vaniday.com.au/");
+
 			Sleep(5);
 // REPOPENING THE NEWLY CREATED APPOINTMENT HERE
 			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(2) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable.duration-45.booking__manual--approved")).click();
 			
 			Sleep(3);
 			
-driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements = driver.findElements(By.name("service"));
-			ServiceElements.get(1).sendKeys("Hair Coloring");
+			ServiceElements.get(1).sendKeys("Women's haircut");
 			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
 				  			Sleep(4);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(AppointmentID, CurrentDate);
@@ -823,7 +835,7 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 			Sleep(3);
 			driver.findElement(By.cssSelector("#section-salon > div.vaniday-sections-salon__main-info-wrapper > div.vaniday-sections-salon__main-info-wrapper__right-side > div.vaniday-sections-salon__book-now-box > vaniday-salon-block-book-now > div > a > span.cart-text")).click();
 
-			Sleep(5);
+			Sleep(15);
 			WebElement Date = driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-sections-checkout-view-wrapper.ng-scope > div > div > vaniday-time-picker > article > div.vaniday-timepicker__wrapper-header.ng-scope > div > div.vaniday-timepicker__monthly-carousel > div.vaniday-timepicker__monthly-carousel__carousel.ng-scope > ul > li:nth-child(1) > div:nth-child(4) > div.day.ng-binding"));
 			Date.click();
 			String DateValue = Date.getText();
@@ -859,7 +871,7 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 			
 			driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-recap-booking-bar.ng-scope > vaniday-booking-recap-sidebar > aside > div:nth-child(4) > div > a")).click(); 
 			// Verifying the appointment here.
-			
+			Sleep(10);
 			JSONArray Docs = SearchEventByNote(AppointmentID,new SimpleDateFormat("yyyy-MM-dd").format(FinalDate).toString() );
 			
 			if(Docs.length()==0)
@@ -882,11 +894,13 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 			
 			driver.findElement(By.cssSelector("#servicesListAccordion > v-pane.vaniday-salon-block-services-list__accordion__pane.ng-scope.ng-isolate-scope.is-expanded > v-pane-content > div > ul > li:nth-child(1) > div > div.salon-block-service-list__item__wrapper__content.is-first.is-desktop.hide-on-med-and-down")).click();
 			Sleep(2);
-			driver.findElement(By.cssSelector("#servicesListAccordion > v-pane.vaniday-salon-block-services-list__accordion__pane.ng-scope.ng-isolate-scope.is-expanded > v-pane-content > div > ul > li:nth-child(2) > div > div.salon-block-service-list__item__wrapper__add-action.hide-on-med-and-down > a > span > span > i")).click();
+			driver.findElement(By.cssSelector("#servicesListAccordion > v-pane:nth-child(2) > v-pane-header > div > strong")).click();
+			Sleep(3);
+			driver.findElement(By.cssSelector("#servicesListAccordion > v-pane:nth-child(2) > v-pane-content > div > ul > li:nth-child(1) > div > div.salon-block-service-list__item__wrapper__misc-action > div")).click();
 			Sleep(3);
 			driver.findElement(By.cssSelector("#section-salon > div.vaniday-sections-salon__main-info-wrapper > div.vaniday-sections-salon__main-info-wrapper__right-side > div.vaniday-sections-salon__book-now-box > vaniday-salon-block-book-now > div > a > span.cart-text")).click();
 
-			Sleep(5);
+			Sleep(10);
 			WebElement Date = driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-sections-checkout-view-wrapper.ng-scope > div > div > vaniday-time-picker > article > div.vaniday-timepicker__wrapper-header.ng-scope > div > div.vaniday-timepicker__monthly-carousel > div.vaniday-timepicker__monthly-carousel__carousel.ng-scope > ul > li:nth-child(1) > div:nth-child(4) > div.day.ng-binding"));
 			Date.click();
 			String DateValue = Date.getText();
@@ -914,15 +928,16 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 			
 			
 			
-			driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-sections-checkout-view-wrapper.ng-scope > div > div > div > div:nth-child(1) > vaniday-payment-tabs > ul > li:nth-child(2) > a > span > strong")).click();
-			Sleep(3);
-
+			driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-recap-booking-bar.ng-scope > vaniday-booking-recap-sidebar > aside > div.vaniday-booking-recap-sidebar__item.ng-scope > div > a > span.cart-text")).click();
+			Sleep(7);
+ 			driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-sections-checkout-view-wrapper.ng-scope > div > div > div > div:nth-child(1) > vaniday-payment-tabs > ul > li:nth-child(2) > a")).click();
+			Sleep(7);
 			driver.findElement(By.name("message")).sendKeys(AppointmentID);
-			Sleep(3);
+			Sleep(7);
 			
 			driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-recap-booking-bar.ng-scope > vaniday-booking-recap-sidebar > aside > div:nth-child(4) > div > a")).click(); 
 			// Verifying the appointment here.
-			
+			Sleep(10);
 			JSONArray Docs = SearchEventByNote(AppointmentID,new SimpleDateFormat("yyyy-MM-dd").format(FinalDate).toString() );
 			if(Docs.length()!=2)
 				throw new Exception("The booking was not created");
@@ -938,22 +953,20 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 		try {
 			String AppointmentID = new Object() {
 			}.getClass().getEnclosingMethod().getName();
-
-			
-			SignInMarketPlace();
-
+ 
+			Calendar cal = Calendar.getInstance();  
+		    cal.setTime(new Date());  
+		    cal.add(Calendar.DATE, 3); 
+		    Date date = cal.getTime();
+		    
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/calendar?view=day&date="+new SimpleDateFormat("yyyy-MM-dd").format(date).toString());
+			  
 
 			driver.findElement(By.cssSelector("body > ui-view > div > div.toolbar__calendarbar.vw-toolbar__content.is-expanded > div > section > vm-add-new-appointment-button > div > a:nth-child(2)")).click();
 			Sleep(3);
-			driver.findElement(By.id("date")).clear();
-
-			Calendar cal = Calendar.getInstance();  
-		    cal.setTime(new Date());  
-		    cal.add(Calendar.DATE, 3);     
-			//  System.out.println(cal.getTime());
-
-		// System.out.println(new SimpleDateFormat("dd/MM/yyyy").format( cal.getTime()));
-			driver.findElement(By.id("date")).sendKeys(new SimpleDateFormat("dd/MM/yyyy").format( cal.getTime()));
+			
+		  
+		   
 			Sleep(3); 
 
 			new Select(driver.findElement(By.id("professional"))).selectByVisibleText("Eduarda");
@@ -962,7 +975,7 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 			new Select(driver.findElement(By.id("duration"))).selectByVisibleText("4h00m");
 			driver.findElement(By.id("reason")).sendKeys(AppointmentID);
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__footer.modal-footer > button")).click();
 			
 			SignInMarketPlace();
 			
@@ -970,11 +983,8 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 			
 			driver.findElement(By.cssSelector("#servicesListAccordion > v-pane.vaniday-salon-block-services-list__accordion__pane.ng-scope.ng-isolate-scope.is-expanded > v-pane-content > div > ul > li:nth-child(1) > div > div.salon-block-service-list__item__wrapper__content.is-first.is-desktop.hide-on-med-and-down")).click();
 			Sleep(2);
-			driver.findElement(By.cssSelector("#servicesListAccordion > v-pane.vaniday-salon-block-services-list__accordion__pane.ng-scope.ng-isolate-scope.is-expanded > v-pane-content > div > ul > li:nth-child(2) > div > div.salon-block-service-list__item__wrapper__add-action.hide-on-med-and-down > a > span > span > i")).click();
-			Sleep(3);
-			driver.findElement(By.cssSelector("#section-salon > div.vaniday-sections-salon__main-info-wrapper > div.vaniday-sections-salon__main-info-wrapper__right-side > div.vaniday-sections-salon__book-now-box > vaniday-salon-block-book-now > div > a > span.cart-text")).click();
-
-			Sleep(5);
+			driver.findElement(By.cssSelector("#section-salon > div.vaniday-sections-salon__main-info-wrapper > div.vaniday-sections-salon__main-info-wrapper__right-side > div.vaniday-sections-salon__book-now-box > vaniday-salon-block-book-now > div > a.btn.btn-booking.btn-block.btn-size-lg.book-now-button.has-bookings > span.cart-text")).click();
+			Sleep(15);
 			WebElement Date = driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-sections-checkout-view-wrapper.ng-scope > div > div > vaniday-time-picker > article > div.vaniday-timepicker__wrapper-header.ng-scope > div > div.vaniday-timepicker__monthly-carousel > div.vaniday-timepicker__monthly-carousel__carousel.ng-scope > ul > li:nth-child(1) > div:nth-child(4) > div.day.ng-binding"));
 			Date.click();
 			String DateValue = Date.getText();
@@ -1008,7 +1018,14 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 		try {
 			String AppointmentID = new Object() {
 			}.getClass().getEnclosingMethod().getName();
-
+		
+			Calendar cal = Calendar.getInstance();  
+		    cal.setTime(new Date());  
+		    cal.add(Calendar.DATE, 3); 
+		    Date date = cal.getTime();
+		    
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/calendar?view=day&date="+new SimpleDateFormat("yyyy-MM-dd").format(date).toString());
+			  
  
 
 			driver.findElement(By.cssSelector(
@@ -1017,32 +1034,30 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 			Sleep(2);
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
-			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			Sleep(5);
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
-			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
-			driver.findElement(By.id("date")).clear();
-			Calendar cal = Calendar.getInstance();  
-		    cal.setTime(new Date());  
-		    cal.add(Calendar.DATE, 3);     
-			driver.findElement(By.id("date")).sendKeys(new SimpleDateFormat("dd/MM/yyyy").format( cal.getTime()));
+//		 
 			Sleep(3); 
 			
 			driver.findElement(By.name("price")).sendKeys("50");
 			new Select(driver.findElement(By.id("time"))).selectByVisibleText("04:15 PM");
 
 			new Select(driver.findElement(By.id("duration"))).selectByVisibleText("2h00m");
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			new Select(driver.findElement(By.id("professional"))).selectByVisibleText("Eduarda");
 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(AppointmentID, CurrentDate);
@@ -1100,7 +1115,7 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 			Sleep(3);
 			driver.findElement(By.cssSelector("#section-salon > div.vaniday-sections-salon__main-info-wrapper > div.vaniday-sections-salon__main-info-wrapper__right-side > div.vaniday-sections-salon__book-now-box > vaniday-salon-block-book-now > div > a > span.cart-text")).click();
 
-			Sleep(5);
+			Sleep(15);
 			WebElement Date = driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-sections-checkout-view-wrapper.ng-scope > div > div > vaniday-time-picker > article > div.vaniday-timepicker__wrapper-header.ng-scope > div > div.vaniday-timepicker__monthly-carousel > div.vaniday-timepicker__monthly-carousel__carousel.ng-scope > ul > li:nth-child(1) > div:nth-child(4) > div.day.ng-binding"));
 			Date.click();
 			String DateValue = Date.getText();
@@ -1128,7 +1143,7 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 				if(Time.getText().contains("07:00 PM"))
 					Time.click();
 			}
-			Sleep(3);
+			Sleep(10);
 			
 			
 			
@@ -1140,7 +1155,7 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 			
 			driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-recap-booking-bar.ng-scope > vaniday-booking-recap-sidebar > aside > div:nth-child(4) > div > a")).click(); 
 			// Verifying the appointment here.
-			
+			Sleep(15);
 			JSONArray Docs = SearchEventByNote(AppointmentID,new SimpleDateFormat("yyyy-MM-dd").format(FinalDate).toString() );
 			
 			if(Docs.length()==0)
@@ -1203,20 +1218,22 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(AppointmentID, CurrentDate);
@@ -1253,53 +1270,55 @@ driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fad
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(3);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 			//ADD ANOTHER BOOKING
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements = driver.findElements(By.name("service"));
-			ServiceElements.get(1).sendKeys("Hair Coloring");
+			ServiceElements.get(1).sendKeys("Women's haircut");
 			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 
 			
 			//ADD ANOTHER BOOKING
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements2 = driver.findElements(By.name("service"));
-			ServiceElements2.get(2).sendKeys("Hair Coloring");
+			ServiceElements2.get(2).sendKeys("Women's haircut");
 			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
 			//ADD ANOTHER BOOKING
 
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements3 = driver.findElements(By.name("service"));
 			ServiceElements3.get(3).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form:nth-child(5) > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
 			listItems.get(0).click();
 			
 		
 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 		 
 			Sleep(5);
@@ -1310,11 +1329,11 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			
 			Sleep(3);
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form:nth-child(2) > vm-booking-item > div > div > div.add-new-appointment-form__footer > div > div > a > span")).click();
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form:nth-child(2) > vm-booking-item > div > div > div.add-new-appointment-form__footer > div > div > a > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div.manage-calendar-modal__dialog__content__body__column-left > form > ng-form:nth-child(2) > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.add-new-appointment-form__footer > div > div > a > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div.manage-calendar-modal__dialog__content__body__column-left > form > ng-form:nth-child(3) > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.add-new-appointment-form__footer > div > div > a > span")).click();
 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 		 
 			Sleep(5);
@@ -1349,24 +1368,27 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			Sleep(2);
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
-			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			Sleep(5);
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
-			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
-			driver.get("http://my-dev.vaniday.com.au/");
+			driver.get("https://my-staging.vaniday.com.au/");
+
 			Sleep(5);
 			// REPOPENING THE NEWLY CREATED APPOINTMENT HERE
 			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(2) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable.duration-45.booking__manual--approved")).click();
@@ -1376,7 +1398,7 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			new Select(listItems.get(0)).selectByVisibleText("Camila");
 			
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(AppointmentID, CurrentDate);
@@ -1411,53 +1433,55 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(3);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
-			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 			//ADD ANOTHER BOOKING
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements = driver.findElements(By.name("service"));
-			ServiceElements.get(1).sendKeys("Hair Coloring");
-			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			ServiceElements.get(1).sendKeys("Women's haircut");
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 
 			
 			//ADD ANOTHER BOOKING
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements2 = driver.findElements(By.name("service"));
-			ServiceElements2.get(2).sendKeys("Hair Coloring");
-			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			ServiceElements2.get(2).sendKeys("Women's haircut");
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
 			//ADD ANOTHER BOOKING
 
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements3 = driver.findElements(By.name("service"));
 			ServiceElements3.get(3).sendKeys("Manicure");
-			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form:nth-child(5) > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
 			listItems.get(0).click();
 			
 		
 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 		 
 			Sleep(5);
@@ -1470,15 +1494,17 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			
 			listItems = driver.findElements(By.name("professional"));
 			new Select(listItems.get(0)).selectByVisibleText("Camila");
+			listItems = driver.findElements(By.name("professional"));
+			new Select(listItems.get(1)).selectByVisibleText("Camila");
 			
 			listItems = driver.findElements(By.name("professional"));
 			new Select(listItems.get(2)).selectByVisibleText("Camila");
 			
 			listItems = driver.findElements(By.name("professional"));
-			new Select(listItems.get(3)).selectByVisibleText("Eduarda");
+			new Select(listItems.get(3)).selectByVisibleText("Camila");
 			 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 		 
 			Sleep(5);
@@ -1489,9 +1515,9 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 				throw new Exception("The Professional was not set in the appointment");
 			if (FindProfessionalByID(Docs.getJSONObject(1).getString("professionalId")).getString("firstName").contains("Camila") != true)
 				throw new Exception("The Professional was not set in the appointment");
-			if (FindProfessionalByID(Docs.getJSONObject(2).getString("professionalId")).getString("firstName").contains("Asia") != true)
+			if (FindProfessionalByID(Docs.getJSONObject(2).getString("professionalId")).getString("firstName").contains("Camila") != true)
 				throw new Exception("The Professional was not set in the appointment");
-			if (FindProfessionalByID(Docs.getJSONObject(3).getString("professionalId")).getString("firstName").contains("Eduarda") != true)
+			if (FindProfessionalByID(Docs.getJSONObject(3).getString("professionalId")).getString("firstName").contains("Camila") != true)
 				throw new Exception("The Professional was not set in the appointment");
 
 			TestPassed();
@@ -1520,23 +1546,26 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
-			driver.get("http://my-dev.vaniday.com.au/");
+			driver.get("https://my-staging.vaniday.com.au/");
+
 			Sleep(5);
 // REPOPENING THE NEWLY CREATED APPOINTMENT HERE
 			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(2) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable.duration-45.booking__manual--approved")).click();
@@ -1550,7 +1579,7 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			
 				  			Sleep(4);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(AppointmentID, CurrentDate);
@@ -1587,53 +1616,55 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(3);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
-			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 			//ADD ANOTHER BOOKING
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements = driver.findElements(By.name("service"));
-			ServiceElements.get(1).sendKeys("Hair Coloring");
-			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			ServiceElements.get(1).sendKeys("Women's haircut");
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong "));
 			listItems.get(0).click();
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 
 			
 			//ADD ANOTHER BOOKING
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements2 = driver.findElements(By.name("service"));
-			ServiceElements2.get(2).sendKeys("Hair Coloring");
-			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			ServiceElements2.get(2).sendKeys("Women's haircut");
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form:nth-child(4) > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
 			//ADD ANOTHER BOOKING
 
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements3 = driver.findElements(By.name("service"));
 			ServiceElements3.get(3).sendKeys("Manicure");
-			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form:nth-child(5) > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
 			listItems.get(0).click();
 			
 		
 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 		 
 			Sleep(5);
@@ -1663,7 +1694,7 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			new Select(listItems.get(3)).selectByVisibleText("0h45m");
 			 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 		 
 			Sleep(5);
@@ -1709,53 +1740,55 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(3);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 			//ADD ANOTHER BOOKING
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements = driver.findElements(By.name("service"));
-			ServiceElements.get(1).sendKeys("Hair Coloring");
-			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			ServiceElements.get(1).sendKeys("Women's haircut");
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a"));
 			listItems.get(0).click();
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 
 			
 			//ADD ANOTHER BOOKING
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements2 = driver.findElements(By.name("service"));
-			ServiceElements2.get(2).sendKeys("Hair Coloring");
-			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			ServiceElements2.get(2).sendKeys("Manicure");
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form:nth-child(4) > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
 			listItems.get(0).click();
 			
 			//ADD ANOTHER BOOKING
 
 			
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-add-another-booking-button > div > a > span > span")).click();
+			driver.findElement(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-add-another-booking-button > a > span > span")).click();
 			
 			List<WebElement> ServiceElements3 = driver.findElements(By.name("service"));
 			ServiceElements3.get(3).sendKeys("Manicure");
-			Sleep(1);
-			listItems = driver.findElements(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > ng-form.ng-scope.ng-invalid.ng-invalid-required.ng-dirty.ng-valid-parse > vm-booking-item > div > div > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li:nth-child(1) > a > strong"));
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form:nth-child(5) > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
 			listItems.get(0).click();
 			
 		
 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 		 
 			Sleep(5);
@@ -1785,7 +1818,7 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			new Select(listItems.get(3)).selectByVisibleText("0h45m");
 			 
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 		 
 			Sleep(5);
@@ -1830,24 +1863,27 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			Sleep(2);
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
-			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			Sleep(5);
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
-			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			Sleep(5);
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
-			driver.get("http://my-dev.vaniday.com.au/");
+			driver.get("https://my-staging.vaniday.com.au/");
+
 			Sleep(5);
 			// REPOPENING THE NEWLY CREATED APPOINTMENT HERE
 			WebElement From =driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(2) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable.duration-45.booking__manual--approved"));
@@ -1893,23 +1929,26 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
-			driver.get("http://my-dev.vaniday.com.au/");
+			driver.get("https://my-staging.vaniday.com.au/");
+
 			Sleep(5);
 			// REPOPENING THE NEWLY CREATED APPOINTMENT HERE
 			WebElement From =driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(2) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable.duration-45.booking__manual--approved"));
@@ -1957,23 +1996,26 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
-			driver.get("http://my-dev.vaniday.com.au/");
+			driver.get("https://my-staging.vaniday.com.au/");
+
 			Sleep(5);
 			// REPOPENING THE NEWLY CREATED APPOINTMENT HERE
 			WebElement From =driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(2) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable.duration-45.booking__manual--approved"));
@@ -2022,27 +2064,30 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			driver.findElement(By.name("customerSearch")).sendKeys("Julia Roberts");
 
 			Sleep(1);
-			List<WebElement> listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/vm-appointment-context/div/div[2]/vm-client-autocomplete/ng-form/div[2]/ul/li/a"));
+			List<WebElement> listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > vm-manage-manual-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > ul > li > a > i"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			listItems = driver.findElements(By.cssSelector("body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > form > ng-form > vm-manage-manual-appointment-booking-item > div > div:nth-child(1) > div.form-group.add-new-appointment-form__main-form-group > div > div.col-lg-12 > div > div > ul > li > a"));
+
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			driver.findElement(By.cssSelector("#note")).click();
 			driver.findElement(By.id("note")).sendKeys(AppointmentID);
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button"))
 					.click();
 			Sleep(5);
-			driver.get("http://my-dev.vaniday.com.au/");
+			driver.get("https://my-staging.vaniday.com.au/");
+
 			Sleep(5);
-			// REPOPENING THE NEWLY CREATED APPOINTMENT HERE
+			// Dragging the appointment here
 			WebElement From =driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(2) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable.duration-45.booking__manual--approved"));
-			WebElement To = driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr:nth-child(51) > td:nth-child(2)"));
+			WebElement To = driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-slats > table > tbody > tr:nth-child(54n) > td:nth-child(2)"));
 			
 			Actions builder = new Actions(driver);
 			
@@ -2055,9 +2100,7 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 
 			if (FindProfessionalByID(Docs.getJSONObject(0).getString("professionalId")).getString("firstName").contains("Camila") != true)
 				throw new Exception("The Professional was not set in the appointment");
-			if (Docs.getJSONObject(0).getString("startAt").contains("12:15") != true)
-				throw new Exception("The Time was not set in the appointment");
-			if (Docs.getJSONObject(0).getString("endAt").contains("13:00") != true)
+			if (Docs.getJSONObject(0).getString("startAt").contains("4:30") != true)
 				throw new Exception("The Time was not set in the appointment");
 			
 
@@ -2081,7 +2124,7 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			Sleep(3);
 			driver.findElement(By.cssSelector("#section-salon > div.vaniday-sections-salon__main-info-wrapper > div.vaniday-sections-salon__main-info-wrapper__right-side > div.vaniday-sections-salon__book-now-box > vaniday-salon-block-book-now > div > a > span.cart-text")).click();
 
-			Sleep(5);
+			Sleep(20);
 			WebElement Date = driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-sections-checkout-view-wrapper.ng-scope > div > div > vaniday-time-picker > article > div.vaniday-timepicker__wrapper-header.ng-scope > div > div.vaniday-timepicker__monthly-carousel > div.vaniday-timepicker__monthly-carousel__carousel.ng-scope > ul > li:nth-child(1) > div:nth-child(3) > div.day.ng-binding"));
 			Date.click();
 			String DateValue = Date.getText();
@@ -2092,9 +2135,6 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			Date FinalDate = new SimpleDateFormat("MMMMMMMMMM").parse(Month);
 			FinalDate.setDate(Integer.parseInt(DateValue));
 			FinalDate.setYear(Integer.parseInt(Year)-1900);
-	 
-			
-			
 
 			Sleep(2);
 			
@@ -2127,10 +2167,10 @@ driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > di
 			Sleep(3);
 			//OPENING THE NEWLY CREATED APPOINTMENT HERE
 			
-			driver.get("http://my-dev.vaniday.com.au/#/vanidateau/calendar?view=day&date="+new SimpleDateFormat("yyyy-MM-dd").format(FinalDate).toString() );
+			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/calendar?view=day&date="+new SimpleDateFormat("yyyy-MM-dd").format(FinalDate).toString() );
 			Sleep(10);
 
-			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(4) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.duration-45.booking__automatic--pending > div.fc-content > div.duration > b")).click();
+			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(4) > div > div:nth-child(2) > a > div.fc-content > div.title")).click();
 			Sleep(5);
 			driver.findElement(By.cssSelector("body > div.modal.fade.manage-automatic-booking-modal.ng-scope.in > div > div > div.modal-header > div > div.status-combo.is-pending > a > span.status-combo__active-status__action-change-status.ng-scope > span")).click();
 			Sleep(2);

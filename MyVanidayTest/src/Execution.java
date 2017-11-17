@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 import org.json.JSONException;
@@ -64,8 +65,8 @@ public class Execution {
 		 }
 		 else
 		 {
-			 ClientTests tcClientTests;
-			 tcClientTests= new ClientTests(driver,AuthToken);
+			 InventoryTests tcInventoryTests;
+		 	  tcInventoryTests= new InventoryTests(driver,AuthToken);
 		 }
 	 	
 		} catch (Exception e) {
@@ -77,7 +78,7 @@ public class Execution {
 
 	public static WebDriver GetDriver() throws InterruptedException {
 	
-		System.setProperty("webdriver.chrome.driver", "/Users/arsaljalib/chromedriver");
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/chromedriver");	
 		DesiredCapabilities caps = DesiredCapabilities.chrome();
 		LoggingPreferences logPrefs = new LoggingPreferences();
 		logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
@@ -87,7 +88,8 @@ public class Execution {
 		WebDriver driver;
 
 		driver = new ChromeDriver(caps);
-	 
+		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+
 		
 		if(myCommon.TestingEnvironment.contains("staging"))
 		{

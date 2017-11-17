@@ -35,6 +35,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -105,7 +106,6 @@ public class myCommon {
 		 
 	}
 	
-
 	public static boolean ProductExists(String ProductName, String AuthToken) throws IOException {
 
 		// System.out.println("getting products");
@@ -229,13 +229,25 @@ public class myCommon {
 				
 				
 				new Select(driver.findElement(By.cssSelector("#selectedSalon"))).selectByVisibleText("Vanidate AU");
+				
+				if(x[i].getName().contains("Calender") )
+				{
+					ResetAppointments(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+				}
+				
+				if(x[i].getName().contains("Client") )
+				{
+						ResetClients(AuthToken);					
+				}
 
 				TotalTests++;
 				x[i].invoke(this, null);
+				
+				
 
 			} catch (Exception e) {
 				
-					e.printStackTrace();
+					System.out.println(" Issue in 'Execute All methods' due to "+e.getMessage());
 				
 			}  
 		}
@@ -270,7 +282,17 @@ public class myCommon {
 					Sleep(5);
 					new Select(driver.findElement(By.name("selectedSalon"))).selectByVisibleText("Vanidate AU");
 					Sleep(5);
-
+					
+					if(TestName.contains("Calender") )
+					{
+						ResetAppointments(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+					}
+					
+					if(TestName.contains("Client") )
+					{
+							ResetClients(AuthToken);					
+					}
+					
 					method.invoke(this, null);
 				}
 			}
@@ -558,7 +580,7 @@ public class myCommon {
 		
 	}
 	
-public void ResetSaloon(String AuthToken) {
+	public void ResetSaloon(String AuthToken) {
 		
 		try {
 
@@ -640,10 +662,12 @@ public void ResetSaloon(String AuthToken) {
 				}
 				if(JData.getJSONObject(i).getJSONObject("blockOffTime").get("reason").toString().contains("null"))
 				{
-					String StartAt=Note.split("-")[0];
+					if(Note.contains("Client")!=true && Note.contains("Calender")!=true)
+						{
+						String StartAt=Note.split("-")[0];
+						
 					String EndAt=Note.split("-")[1];
 					String Professional=Note.split("-")[2];
-					 
 					
 					JSONObject obj= JData.getJSONObject(i);
 					
@@ -651,6 +675,8 @@ public void ResetSaloon(String AuthToken) {
 					{
 						Orders.put(JData.getJSONObject(i));
 					}
+					}
+					
 				}
 				}
 			}
@@ -725,7 +751,7 @@ public void ResetSaloon(String AuthToken) {
 				{
 				if (JData.getJSONObject(i).getJSONObject("booking").get("message").toString().contains("TestCase") == true) {
 
-					URL url2 = new URL("https://my-api-staging.vaniday.com/orders/"+ JData.getJSONObject(i).getJSONObject("booking").getString("orderId").toString());
+					URL url2 = new URL("https://v3-staging.vaniday.com/orders/"+ JData.getJSONObject(i).getJSONObject("booking").getString("orderId").toString());
 					HttpURLConnection urlConnection2 = (HttpURLConnection) url2.openConnection();
 					urlConnection2.setRequestProperty("Authorization", "Bearer " + MKTAuthToken);
 					urlConnection2.setRequestMethod("DELETE");
@@ -758,10 +784,11 @@ public void ResetSaloon(String AuthToken) {
 			 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			if(e.getMessage().contains("response code: 500")!=true)
-				e.printStackTrace();
+			//if(e.getMessage().contains("response code: 500")!=true)
+			//	e.printStackTrace();
 		}
 	}
+	
 	public JSONObject FindProfessionalByID(String ID)
 	{
 		try {
@@ -813,25 +840,30 @@ public void ResetSaloon(String AuthToken) {
 
 try {
 		
-		driver.get("http://rocket:rock4me@www-staging.vaniday.com.au/");
+		driver.get("https://rocket:rock4me@www-staging.vaniday.com.au/");
 		Sleep(5);
-		driver.get("http://www-staging.vaniday.com.au/login/");
+		driver.get("https://www-staging.vaniday.com.au/login/");
 		
 		Sleep(5 );
 		
 		
 
 		driver.findElement(By.name("email")).sendKeys("arsal.jalib@vaniday.com");
-		driver.findElement(By.name("password")).sendKeys("vaniday");
+		
+		if(driver.findElements(By.name("password")).size() != 0) // Checking if the user is already signed in or not
+		{
+			driver.findElement(By.name("password")).sendKeys("vaniday");
 
-		// driver.findElement(By.name("login")).click();
+			// driver.findElement(By.name("login")).click();
 
-		driver.findElement(By.cssSelector("#app > div.ng-scope.main > section > div > login-form > div > form > fieldset > div.input-group > button")).click();
+			driver.findElement(By.cssSelector("#app > div.ng-scope.main > section > div > login-form > div > form > fieldset > div.input-group > button")).click();
 
+			}		
+		
 		Sleep(8);
 	
 		MKTAuthToken =  GetAuthenticationToken(((JavascriptExecutor) driver));
-		driver.get("http://www-staging.vaniday.com.au/salons/vanidateau");
+		driver.get("https://www-staging.vaniday.com.au/salons/vanidateau");
 		Sleep(5);
 }
 catch(Exception e)
@@ -872,7 +904,7 @@ return null;
 	{
 try {
 	
-		URL url = new URL("http://my-api.dev.vaniday.com/block-off-time");
+		URL url = new URL("http://my-api-staging.vaniday.com/block-off-time");
 	 
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 		urlConnection.setRequestProperty("Authorization", "Bearer " + AuthToken);
@@ -898,7 +930,7 @@ catch(Exception e)
 
 	}
 
-public JSONObject FindClient(String ID)
+	public JSONObject FindClient(String ID)
 {
 	try {
 	String Query ="https://my-api-staging.vaniday.com/contacts?salonId=83da9e51-4bb4-4f7d-a8b7-e5472ac02b22";
@@ -906,7 +938,7 @@ public JSONObject FindClient(String ID)
 	
 	JSONObject jobj = new JSONObject(result);
 	JSONArray jArray= jobj.getJSONArray("c");
-	for(int i=0; i<jArray.length();i++)
+ for(int i=0; i<jArray.length();i++)
 	{
 	if(jArray.getJSONObject(i).getString("firstName").contains(ID))
 	{
@@ -923,11 +955,10 @@ public JSONObject FindClient(String ID)
 	return null;
 }
 
-
-public ArrayList<JSONObject> VerifyClients(String ID)
+	public ArrayList<JSONObject> VerifyClients(String ID)
 {
 	try {
-	String Query ="http://my-api-staging.vaniday.com/contacts?salonId=24ccfb06-5a18-4c8a-af93-3962e7005fe1";
+	String Query ="https://my-api-staging.vaniday.com/contacts?salonId=83da9e51-4bb4-4f7d-a8b7-e5472ac02b22";
 	String result = ExecuteQuery(Query);
 	
 	ArrayList<JSONObject> returnList= new ArrayList();

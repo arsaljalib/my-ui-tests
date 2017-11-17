@@ -23,16 +23,16 @@ public class ClientTests extends myCommon{
 		
 		 driver=mydriver;
 		 AuthToken=myAuthToken;
-		 FilePath="/Users/arsaljalib/eclipse-workspace/MyVanidayTestApplication/Files";
+		 FilePath="/Users/arsaljalib/eclipse-workspace/my-ui-tests/Files";
 		 
 
 		 ResetClients(AuthToken);
 			driver.manage().window().maximize();
 
-	 // ExecuteAllTests(driver, ClientTests.class);
+	  //  ExecuteAllTests(driver, ClientTests.class);
 
-		 //ExecuteSpecificTest("Clients_TestCase_7",ClientTests.class);
-		 ExecuteSimilarTests("Clients_TestCase_7",ClientTests.class,driver);
+		 // ExecuteSpecificTest("Clients_TestCase_7",ClientTests.class);
+		   ExecuteSimilarTests("Import_Client_TestCase_1",ClientTests.class,driver);
 	  PrintTestResults();
 	}
 	
@@ -200,7 +200,7 @@ public class ClientTests extends myCommon{
 
 			
 			driver.findElement(By.cssSelector("body > div.modal.fade.manage-client-modal.ng-scope.in > div > div > form > div.modal-footer > vm-button-loading > button > span")).click();
-			Sleep(3);
+			Sleep(10);
 
 			//CREATING THE SECOND CLIENT HERE
 			
@@ -261,10 +261,10 @@ public class ClientTests extends myCommon{
 			
 			driver.findElement(By.cssSelector("#servicesListAccordion > v-pane.vaniday-salon-block-services-list__accordion__pane.ng-scope.ng-isolate-scope.is-expanded > v-pane-content > div > ul > li:nth-child(1) > div > div.salon-block-service-list__item__wrapper__content.is-first.is-desktop.hide-on-med-and-down")).click();
 			
-			Sleep(3);
+			Sleep(10);
 			driver.findElement(By.cssSelector("#section-salon > div.vaniday-sections-salon__main-info-wrapper > div.vaniday-sections-salon__main-info-wrapper__right-side > div.vaniday-sections-salon__book-now-box > vaniday-salon-block-book-now > div > a > span.cart-text")).click();
 
-			Sleep(5);
+			Sleep(10);
 			WebElement Date = driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-sections-checkout-view-wrapper.ng-scope > div > div > vaniday-time-picker > article > div.vaniday-timepicker__wrapper-header.ng-scope > div > div.vaniday-timepicker__monthly-carousel > div.vaniday-timepicker__monthly-carousel__carousel.ng-scope > ul > li:nth-child(1) > div:nth-child(4) > div.day.ng-binding"));
 			Date.click();
 			String DateValue = Date.getText();
@@ -296,7 +296,7 @@ public class ClientTests extends myCommon{
 				driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-sections-checkout-view-wrapper.ng-scope > div > div > div > div:nth-child(1) > vaniday-payment-tabs > ul > li:nth-child(2) > a > span > strong")).click();
 
 			}
-			catch(org.openqa.selenium.StaleElementReferenceException ex)
+			catch(Exception ex)
 			{
 				driver.findElement(By.cssSelector("#app > div.ng-scope.main.no-fixed-main > section > div.vaniday-sections-checkout-view-wrapper.ng-scope > div > div > div > div:nth-child(1) > vaniday-payment-tabs > ul > li:nth-child(2) > a > span > strong")).click();
 
@@ -328,15 +328,15 @@ public class ClientTests extends myCommon{
 			if(Docs.length()==0)
 				throw new Exception("The booking was not created");
 			
-			// OPENING THE APPOINTMENT HERE
-			driver.get("http://my-staging.vaniday.com.au/#/vanidateau/calendar?view=day&date="+new SimpleDateFormat("yyyy-MM-dd").format(FinalDate).toString() );
-			Sleep(10);
-
-			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(4) > div > div:nth-child(2) > a.fc-time-grid-event.fc-v-event.fc-event.fc-start.fc-end.duration-45.booking__automatic--pending > div.fc-content > div.duration > b")).click();
-			Sleep(5);
-			driver.findElement(By.cssSelector("body > div.modal.fade.manage-automatic-booking-modal.ng-scope.in > div > div > div.modal-header > div > div.status-combo.is-pending > a > span.status-combo__active-status__action-change-status.ng-scope > span")).click();
-			Sleep(2);
-			driver.findElement(By.cssSelector("body > div.modal.fade.manage-automatic-booking-modal.ng-scope.in > div > div > div.modal-header > div > div.status-combo.is-pending > ul > li.status-combo__list__item.ng-scope.is-approved > a")).click();
+//			// OPENING THE APPOINTMENT HERE
+//			driver.get("http://my-staging.vaniday.com.au/#/vanidateau/calendar?view=day&date="+new SimpleDateFormat("yyyy-MM-dd").format(FinalDate).toString() );
+//			Sleep(10);
+//
+//			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div > div > div > table > tbody > tr > td > div > div > div.fc-content-skeleton > table > tbody > tr > td:nth-child(2) > div > div:nth-child(2) > a > div.fc-content")).click();
+//			Sleep(5);
+//			driver.findElement(By.cssSelector("body > div.modal.fade.manage-automatic-booking-modal.ng-scope.in > div > div > div.modal-header > div > div.status-combo.is-pending > a > span.status-combo__active-status__action-change-status.ng-scope > span")).click();
+//			Sleep(2);
+//			driver.findElement(By.cssSelector("body > div.modal.fade.manage-automatic-booking-modal.ng-scope.in > div > div > div.modal-header > div > div.status-combo.is-pending > ul > li.status-combo__list__item.ng-scope.is-approved > a")).click();
 
 			Sleep(5);
 			
@@ -398,8 +398,7 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 			TestFailed(e);
 		}
 	}
-	
-	
+
 	public void Clients_TestCase_10() //Create a new Client by providing invalid value in Phone
 	{
 		try {
@@ -565,7 +564,7 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 			driver.findElement(By.name("email")).clear();
 			driver.findElement(By.name("email")).sendKeys("my@vaniday.com2");
 			driver.findElement(By.name("phone")).clear();
-			driver.findElement(By.name("phone")).sendKeys("333845744");
+			driver.findElement(By.name("phone")).sendKeys("+61333845744");
 			driver.findElement(By.name("day")).clear();
 			driver.findElement(By.name("day")).sendKeys("25");
 			driver.findElement(By.name("year")).clear();
@@ -586,7 +585,7 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 				throw new Exception("The Client last name was not set");
 			if(FindClient(ClientName+"2").getString("email").contains("my@vaniday.com2")!=true)
 				throw new Exception("The Client email was not set");
-			if(FindClient(ClientName+"2").getString("phoneNumber").contains("333845744")!=true)
+			if(FindClient(ClientName+"2").getString("phoneNumber").contains("+61333845744")!=true)
 				throw new Exception("The Client phone was not set");
 			if(FindClient(ClientName+"2").getString("birthday").contains("1983-10-25")!=true)
 				throw new Exception("The Client birthday was not set");
@@ -805,18 +804,18 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 			 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(5);
-			List<WebElement>  listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			List<WebElement>  listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/div/form/ng-form/vm-manage-manual-appointment-booking-item/div/div[1]/div[1]/div/div[1]/div/div/ul/li/a"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
 
-			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
+			//driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > a")).click();
 			driver.findElement(By.id("note")).sendKeys(ClientName);
 			
 			String CurrentDate= new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 			
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button > span"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(ClientName, CurrentDate);
@@ -857,12 +856,10 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/clients/"+FindClient(ClientName).getString("id"));
 			Sleep(3);
 			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.customer-container > div.customer-info > div.client-details.ng-scope > section > div.client-info-actions > vm-add-new-appointment-button > a")).click();
-			Sleep(3);
+			Sleep(5);
 			
 			//CREATING THE APPOINTMENT HERE
-			Sleep(1);
-			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.customer-container > div.customer-info > div.client-details.ng-scope > section > div.client-info-actions > vm-add-new-appointment-button > a")).click();
-			Sleep(3);
+		 
 			driver.findElement(By.xpath("//*[@id=\"customerSearch\"]")).sendKeys("Julia Roberts");
 
 			Sleep(3);
@@ -871,7 +868,7 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 			
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(1);
-			  listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			  listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/div/form/ng-form/vm-manage-manual-appointment-booking-item/div/div[1]/div[1]/div/div[1]/div/div/ul/li/a"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
@@ -882,7 +879,7 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 			String CurrentDate= new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 			
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button > span"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(ClientName, CurrentDate);
@@ -922,13 +919,11 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 				throw new Exception("The Client was not created where it should have");
 			
 			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/clients/"+FindClient(ClientName).getString("id"));
-			Sleep(3);
+			Sleep(5);
 			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.customer-container > div.customer-info > div.client-details.ng-scope > section > div.client-info-actions > vm-add-new-appointment-button > a")).click();
 			Sleep(3);
 			
 			//CREATING THE APPOINTMENT HERE
-			Sleep(1);
-			driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.customer-container > div.customer-info > div.client-details.ng-scope > section > div.client-info-actions > vm-add-new-appointment-button > a")).click();
 			Sleep(3);
 			driver.findElement(By.cssSelector("body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-body > form > vm-appointment-context > div > div.client-holder > vm-client-autocomplete > ng-form > div.form-group.required.customer-autocomplete > div > vm-manage-client-button > a")).click();
 			Sleep(2);
@@ -941,7 +936,7 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 			 
 			driver.findElement(By.name("service")).sendKeys("Manicure");
 			Sleep(4);
-			List<WebElement>  listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/form/ng-form/vm-booking-item/div/div/div[1]/div/div[1]/div/div/ul/li/a"));
+			List<WebElement>  listItems = driver.findElements(By.xpath("/html/body/div[7]/div/div/div[2]/div/form/ng-form/vm-manage-manual-appointment-booking-item/div/div[1]/div[1]/div/div[1]/div/div/ul/li/a"));
 			listItems.get(0).click();
 
 			driver.findElement(By.name("price")).sendKeys("50");
@@ -952,7 +947,7 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 			String CurrentDate= new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 			
 			driver.findElement(By.cssSelector(
-					"body > div.modal.manage-appointment-modal.fade.ng-scope.in > div > div > div.modal-footer > button > span"))
+					"body > div.manage-calendar-modal.modal.fade.ng-scope.in > div > div > div.manage-calendar-modal__dialog__content__body > div > div > button > span"))
 					.click();
 			Sleep(5);
 			JSONArray Docs = SearchEventByNote(ClientName, CurrentDate);
@@ -1071,8 +1066,8 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 		}
 	}
 	
-//	public void Import_Client_TestCase_5() // Import a file with records greater than the limit allowed(Add around 500 clients)
-//	{
+ 	public void Import_Client_TestCase_5() // Import a file with records greater than the limit allowed(Add around 500 clients)
+ 	{
 //		try {
 //			String ClientName = new Object() {
 //			}.getClass().getEnclosingMethod().getName();
@@ -1094,8 +1089,8 @@ driver.get("http://www-staging.vaniday.com.au/signup");
 //
 //		} catch (Exception e) {
 //			TestFailed(e);
-//		}
-//	}
+ //		}
+ 	}
 	
 	public void Import_Client_TestCase_6() // Import a file that contains headers as well
 	{
