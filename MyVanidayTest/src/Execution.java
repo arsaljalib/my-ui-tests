@@ -65,8 +65,8 @@ public class Execution {
 		 }
 		 else
 		 {
-			 NotificationTests tcNotificationTests;
-			 tcNotificationTests= new NotificationTests(driver,AuthToken);
+			 SaloonTests tcSaloonTests;
+			 tcSaloonTests= new SaloonTests(driver,AuthToken);
 		 }
 	 	
 		} catch (Exception e) {

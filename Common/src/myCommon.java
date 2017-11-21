@@ -987,7 +987,7 @@ public JSONObject FindServiceByID(String ID)
 	try {
 
 		//	String ProductQuery = "http://my-api.dev.vaniday.com/salons/24ccfb06-5a18-4c8a-af93-3962e7005fe1/products?offset=0&limit=100";
-			String Query ="http://my-api-staging.vaniday.com/sections?salonId=24ccfb06-5a18-4c8a-af93-3962e7005fe1";
+			String Query ="https://my-api-staging.vaniday.com/sections?salonId=83da9e51-4bb4-4f7d-a8b7-e5472ac02b22";
 
 			URL url = new URL(Query);
 			URLConnection urlConnection = url.openConnection();
@@ -1049,7 +1049,7 @@ public boolean VerifyNotificationEmail(String  Date, String Time,String EmailTyp
 	      //create the POP3 store object and connect with the pop server
 	      Store store = emailSession.getStore("pop3s");
 
-	      store.connect("pop.gmail.com", "arsal.jalib@vaniday.com", "lenovo-4530s");
+	      store.connect("pop.gmail.com", "arsal.jalib@vaniday.com", "yourpasswordhere");
 	      
 
 	      //create the folder object and open it

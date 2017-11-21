@@ -19,10 +19,10 @@ public class SaloonTests extends myCommon {
 		ResetSaloon(AuthToken);
 		driver.manage().window().maximize();
 
-		  ExecuteAllTests(driver, SaloonTests.class);
+		 // ExecuteAllTests(driver, SaloonTests.class);
 
 		//ExecuteSpecificTest("Saloon_Service_TestCase_6", SaloonTests.class);
-		// ExecuteSimilarTests("Inventory_Product_TestCase_15",SaloonTests.class,driver);
+		 ExecuteSimilarTests("Saloon_Service_TestCase",SaloonTests.class,driver);
 		PrintTestResults();
 		ResetSaloon(AuthToken);
 	}
@@ -321,7 +321,7 @@ public class SaloonTests extends myCommon {
 			driver.findElement(By.id("description")).sendKeys("Delete and existing member");
 
 			new Select(driver.findElement(By.name("profession"))).selectByVisibleText("Barber");
-			new Select(driver.findElement(By.name("gender"))).selectByVisibleText("female");
+			new Select(driver.findElement(By.name("gender"))).selectByVisibleText("Female");
 			driver.findElement(By.cssSelector(
 					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > form > div.tab-content-items.col-lg-12 > div:nth-child(2) > vm-services-list-form-group > div.content-form.col-lg-8 > div:nth-child(1) > div > label"))
 					.click();
@@ -392,7 +392,7 @@ public class SaloonTests extends myCommon {
 			driver.findElement(By.id("description")).sendKeys("Create a staff member with a name that already exists");
 
 			new Select(driver.findElement(By.name("profession"))).selectByVisibleText("Barber");
-			new Select(driver.findElement(By.name("gender"))).selectByVisibleText("female");
+			new Select(driver.findElement(By.name("gender"))).selectByVisibleText("Female");
 			driver.findElement(By.cssSelector(
 					"body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > form > div.tab-content-items.col-lg-12 > div:nth-child(2) > vm-services-list-form-group > div.content-form.col-lg-8 > div:nth-child(1) > div > label"))
 					.click();
@@ -865,73 +865,73 @@ builder.clickAndHold(elements.get(0)).moveToElement(elements.get(2)).click().bui
 	
 	public void Saloon_Service_TestCase_3() //Make a sub service offline
 	{
-		try {
-			String ServiceName = new Object() {
-			}.getClass().getEnclosingMethod().getName();
-			
-			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/services/list");
-			Sleep(5);
-			
-		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.service-name-cel.ng-binding"));
-			
-		String ItemName= elem.getText();
-			
-			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.first-action > div > label")).click();
-
-			 Sleep(5);
-			 
-			 JSONObject Doc = FindServiceByID(ItemName );
-			 
-			 if(Doc.getBoolean("isActive")==true)
-				 throw new Exception("The service was not deactivated");
-			 
-			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.first-action > div > label")).click();
-
-			 
-			TestPassed();
-
-		} catch (Exception e) {
-			TestFailed(e);
-		}
+//		try {
+//			String ServiceName = new Object() {
+//			}.getClass().getEnclosingMethod().getName();
+//			
+//			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/services/list");
+//			Sleep(5);
+//			
+//		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr > td.service-name-cel.ng-binding"));
+//			
+//		String ItemName= elem.getText();
+//			
+//			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.first-action > div > label")).click();
+//
+//			 Sleep(5);
+//			 
+//			 JSONObject Doc = FindServiceByID(ItemName );
+//			 
+//			 if(Doc.getBoolean("isActive")==true)
+//				 throw new Exception("The service was not deactivated");
+//			 
+//			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.first-action > div > label")).click();
+//
+//			 
+//			TestPassed();
+//
+//		} catch (Exception e) {
+//			TestFailed(e);
+//		}
 	}
 	
 	public void Saloon_Service_TestCase_4() //Make a sub service offline
 	{
-		try {
-			String ServiceName = new Object() {
-			}.getClass().getEnclosingMethod().getName();
-			
-			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/services/list");
-			Sleep(5);
-			
-		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.service-name-cel.ng-binding"));
-			
-		String ItemName= elem.getText();
-			
-			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.first-action > div > label")).click();
-
-			 Sleep(5);
-			 
-			 JSONObject Doc = FindServiceByID(ItemName );
-			 
-			 if(Doc.getBoolean("isActive")==true)
-				 throw new Exception("The service was not deactivated");
-			 
-			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.first-action > div > label")).click();
-
-			 
-Sleep(5);
-			 
-			  Doc = FindServiceByID(ItemName );
-			 
-			 if(Doc.getBoolean("isActive")!=true)
-				 throw new Exception("The service was not  activated");
-			 
-			TestPassed();
-
-		} catch (Exception e) {
-			TestFailed(e);
-		}
+//		try {
+//			String ServiceName = new Object() {
+//			}.getClass().getEnclosingMethod().getName();
+//			
+//			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/services/list");
+//			Sleep(5);
+//			
+//		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.service-name-cel.ng-binding"));
+//			
+//		String ItemName= elem.getText();
+//			
+//			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.first-action > div > label")).click();
+//
+//			 Sleep(5);
+//			 
+//			 JSONObject Doc = FindServiceByID(ItemName );
+//			 
+//			 if(Doc.getBoolean("isActive")==true)
+//				 throw new Exception("The service was not deactivated");
+//			 
+//			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.first-action > div > label")).click();
+//
+//			 
+//Sleep(5);
+//			 
+//			  Doc = FindServiceByID(ItemName );
+//			 
+//			 if(Doc.getBoolean("isActive")!=true)
+//				 throw new Exception("The service was not  activated");
+//			 
+//			TestPassed();
+//
+//		} catch (Exception e) {
+//			TestFailed(e);
+//		}
 	}
 	
 	public void Saloon_Service_TestCase_5() //Update the Price of a sub-service
@@ -943,18 +943,18 @@ Sleep(5);
 			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/services/list");
 			Sleep(5);
 			
-		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.service-name-cel.ng-binding"));
+		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr > td.service-name-cel.ng-binding"));
 			
 		String ItemName= elem.getText();
 			
-			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr.ng-scope.as-sortable-item.inactive > td.table-actions > a > i")).click();
+			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr > td.table-actions > a > i")).click();
 
 			 Sleep(5);
 			 
-			 String oldPrice = driver.findElement(By.name("price")).getAttribute("value").replace(".", "");
+			 String oldPrice = driver.findElement(By.name("originalPrice")).getAttribute("value").replace(".", "");
 			 
-			 driver.findElement(By.name("price")).clear();
-			 driver.findElement(By.name("price")).sendKeys("3000");
+			 driver.findElement(By.name("originalPrice")).clear();
+			 driver.findElement(By.name("originalPrice")).sendKeys("3000");
 
 			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > form > div.tab-content-action > vm-button-loading > button > span")).click();
 			 
@@ -972,8 +972,8 @@ Sleep(5);
 			 
 			 
 			 
-			 driver.findElement(By.name("price")).clear();
-			 driver.findElement(By.name("price")).sendKeys(oldPrice);
+			 driver.findElement(By.name("originalPrice")).clear();
+			 driver.findElement(By.name("originalPrice")).sendKeys(oldPrice);
 
 			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > form > div.tab-content-action > vm-button-loading > button > span")).click();
 			 
@@ -981,7 +981,7 @@ Sleep(5);
 			 Sleep(5);
 			  Doc = FindServiceByID(ItemName );
 			 
-			 if(Doc.getInt("price")!=Integer.parseInt(oldPrice))
+			 if(Doc.getInt("originalPrice")!=Integer.parseInt(oldPrice))
 				 throw new Exception("The price was not updated");
 			 
 			TestPassed();
@@ -1000,11 +1000,11 @@ Sleep(5);
 			driver.get("https://my-staging.vaniday.com.au/#/vanidateau/settings/services/list");
 			Sleep(5);
 			
-		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr:nth-child(1) > td.service-name-cel.ng-binding"));
+		WebElement elem =	driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr > td.service-name-cel.ng-binding"));
 			
 		String ItemName= elem.getText();
 			
-			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr.ng-scope.as-sortable-item.inactive > td.table-actions > a > i")).click();
+			 driver.findElement(By.cssSelector("body > ui-view > ui-view > section > div.tab-content.ng-scope > div > div > div > div > div > div:nth-child(2) > div > div:nth-child(1) > vm-services-table > table > tbody > tr > td.table-actions > a > i")).click();
 
 			 Sleep(5);
 			 
