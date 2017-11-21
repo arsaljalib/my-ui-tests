@@ -479,7 +479,7 @@ public class myCommon {
 				if (products.getJSONObject(i).get("name").toString().contains("TestCase") == true) {
 
 					URL url = new URL(
-							"http://my-api.staging.vaniday.com/salons/24ccfb06-5a18-4c8a-af93-3962e7005fe1/products/"
+							"http://my-api-staging.vaniday.com/salons/83da9e51-4bb4-4f7d-a8b7-e5472ac02b22/products/"
 									+ products.getJSONObject(i).get("id").toString());
 					HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 					urlConnection.setRequestProperty("Authorization", "Bearer " + AuthToken);
@@ -1078,11 +1078,7 @@ public boolean VerifyNotificationEmail(String  Date, String Time,String EmailTyp
 
 	      for (int i = 0, n = messages.length; i < n; i++) {
 	         Message message = messages[i];
-	      //   System.out.println("---------------------------------");
-	       //  System.out.println("Email Number " + (i + 1));
-	       System.out.println("Subject: " + message.getSubject());
-	        System.out.println("From: " + message.getFrom()[0]);
-	          System.out.println("Text: " + message.getContent().toString());
+	     
 	         
 	         
 	         String result = "";
@@ -1104,7 +1100,7 @@ public boolean VerifyNotificationEmail(String  Date, String Time,String EmailTyp
 	                //     result = result + getTextFromMimeMultipart((MimeMultipart)bodyPart.getContent());
 	                 }
 	         }
-	       //  System.out.println("Text: " +result);
+	       System.out.println("Text: " +result);
 	         
 	        
 	         if(result.contains(EmailType)==true && result.replace(".", "").contains(DateTime)== true)

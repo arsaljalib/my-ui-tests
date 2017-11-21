@@ -65,8 +65,8 @@ public class Execution {
 		 }
 		 else
 		 {
-			 InventoryTests tcInventoryTests;
-		 	  tcInventoryTests= new InventoryTests(driver,AuthToken);
+			 NotificationTests tcNotificationTests;
+			 tcNotificationTests= new NotificationTests(driver,AuthToken);
 		 }
 	 	
 		} catch (Exception e) {

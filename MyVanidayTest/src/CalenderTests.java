@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.Select;
 public class CalenderTests extends myCommon {
 
 	// PRE-REQUIREMENTS: There exists a customer named Julia Roberts
+	// You have to create a Marketplace account for Vanidate AU for testing. Replace the email and Password of the account in the method named "SignInMarketPlace" in the myCommon.java class
 	
 	String CurrentDate;
 

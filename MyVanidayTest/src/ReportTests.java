@@ -34,7 +34,7 @@ public class ReportTests extends myCommon{
 	 // ExecuteAllTests(driver, ReportTests.class);
 
 		 //ExecuteSpecificTest("Clients_TestCase_7",ReportTests.class);
-		  ExecuteSimilarTests("Reports_CustomerRetention_TestCase_4",ReportTests.class,driver);
+		  ExecuteSimilarTests("Reports_CustomerRetention_TestCase_5",ReportTests.class,driver);
 	  PrintTestResults();
 	}
 	public void Reports_AppointmentsSummary_TestCase_1() // ALL STAFF, Today
@@ -1332,7 +1332,7 @@ public class ReportTests extends myCommon{
 		}
 		return 0;
 	}
-	public void VerifyRetentionSummary(List<WebElement> listItems,String Start,String End)
+	public void VerifyRetentionSummary(List<WebElement> listItems,String Start,String End) throws Exception
 	{
 		try {
  
@@ -1365,10 +1365,10 @@ public class ReportTests extends myCommon{
 				{
 					if(JData.getJSONObject(j).getString("type").contains("appointment"))
 					{
-						System.out.println(JData.getJSONObject(j));
+						
 						if(JData.getJSONObject(j).getJSONObject("appointment").getString("customerName").contains(CustomerName)==true && JData.getJSONObject(j).getJSONObject("appointment").getString("customerPhoneNumber").contains(PhoneNumber)==true)
 							{
-								
+								System.out.println(JData.getJSONObject(j));
 								apps.add(JData.getJSONObject(j).getJSONObject("appointment").getString("myOrderId"));
 								numOfApps++;
 								
@@ -1376,10 +1376,17 @@ public class ReportTests extends myCommon{
 					//	sales= sales// +  //FindSalesByAppointment();
 					}
 					if(JData.getJSONObject(j).getString("type").contains("booking") || JData.getJSONObject(j).getString("type").contains("widget"))
-					{						
+					{			
+						
+
 						if( JData.getJSONObject(j).getJSONObject("booking").getString("customerName").contains(CustomerName)==true && JData.getJSONObject(j).getJSONObject("booking").getString("customerPhoneNumber").contains(PhoneNumber)==true)
-							 {
+							 {System.out.println(JData.getJSONObject(j));
 								if(JData.getJSONObject(j).getJSONObject("booking").getString("status").contains("done_by_professional"))
+								{
+									books.add(JData.getJSONObject(j).getJSONObject("booking").getString("orderId"));
+									numOfApps++;
+								}
+								if(JData.getJSONObject(j).getJSONObject("booking").getString("status").contains("confirmed_by_professional") && JData.getJSONObject(j).getJSONObject("booking").getString("paymentType").contains("credit-card"))
 								{
 									books.add(JData.getJSONObject(j).getJSONObject("booking").getString("orderId"));
 									numOfApps++;
@@ -1427,6 +1434,8 @@ public class ReportTests extends myCommon{
 		{
 			System.out.println("The test threw an exception in Verify Retention Summary due to "+e.getMessage());
 		 
+			throw e;
+			
 		}
 	}
 	public void VerifySalesSummary()
